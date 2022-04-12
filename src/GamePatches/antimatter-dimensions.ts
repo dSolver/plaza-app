@@ -1,4 +1,7 @@
-import { patches } from './index';
+import { registerPatch } from './index';
+
+const domain = 'ivark.github.io'
+
 const code = `
 console.log("Patching Antimatter Dimensions");
 
@@ -83,8 +86,7 @@ import('//cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js').
 })
 
 `
-const domain = 'ivark.github.io'
 
-export const AD = ()=> {
-    patches[domain] = code
+export const AD = () => {
+    registerPatch(domain, code)
 }
