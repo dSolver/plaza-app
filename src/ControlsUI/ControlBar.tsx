@@ -82,22 +82,26 @@ export const ControlBar = () => {
                 </IconButton> */}
                 {
                     tabs.length > 1 && (
-                        <ToggleButtonGroup color="primary" exclusive={true} value={mode} onChange={(event, nextMode: APP_MODE) => {
-                            if (nextMode !== mode) {
-                                setMode(nextMode)
-                                IPCService.send('control', {
-                                    action: 'change-mode',
-                                    mode: nextMode
-                                })
-                            }
-                        }}>
-                            <ToggleButton value={APP_MODE.GRID}>
-                                <FontAwesomeIcon icon={faTable} />
-                            </ToggleButton>
-                            <ToggleButton value={APP_MODE.STANDARD}>
-                                <FontAwesomeIcon icon={faWindowMaximize} />
-                            </ToggleButton>
-                        </ToggleButtonGroup>
+                        <div>
+
+                            <ToggleButtonGroup color="primary" exclusive={true} value={mode} onChange={(event, nextMode: APP_MODE) => {
+                                if (nextMode !== mode) {
+                                    setMode(nextMode)
+                                    IPCService.send('control', {
+                                        action: 'change-mode',
+                                        mode: nextMode
+                                    })
+                                }
+                            }}>
+                                <ToggleButton value={APP_MODE.GRID}>
+                                    <FontAwesomeIcon icon={faTable} />
+                                </ToggleButton>
+                                <ToggleButton value={APP_MODE.STANDARD}>
+                                    <FontAwesomeIcon icon={faWindowMaximize} />
+                                </ToggleButton>
+                            </ToggleButtonGroup>
+
+                        </div>
 
                     )
                 }
@@ -107,7 +111,7 @@ export const ControlBar = () => {
                         tabs.map((tab, index) => {
                             return <StyledTab label={
                                 <Stack direction="row" alignItems="center">
-                                    {tab.label}
+                                    {tab.label.substring(0, 25)}
                                     &nbsp;
                                     <CloseButton tabId={tab.tabId} />
                                 </Stack>

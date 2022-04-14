@@ -7,10 +7,11 @@ import { getControlView, TOP_BAR_HEIGHT } from './Control';
 export function layout(mainWindow: BrowserWindow, tabs: Array<Tab>, activeTabId: string, mode: APP_MODE = APP_MODE.STANDARD) {
     const bounds = mainWindow.getBounds()
 
-    const height = bounds.height - TOP_BAR_HEIGHT;
-    const width = bounds.width;
     const x = 0;
     const y = TOP_BAR_HEIGHT;
+
+    const height = bounds.height - y;
+    const width = bounds.width;
 
     if (!tabs) {
         console.error("layout missing tabs param")
@@ -71,7 +72,7 @@ export function layout(mainWindow: BrowserWindow, tabs: Array<Tab>, activeTabId:
 
         })
 
-        mainWindow.setTopBrowserView(getControlView())
+        // mainWindow.setTopBrowserView(getControlView())
     } catch (err) {
         // this error happens, not sure why
         // console.error(err)

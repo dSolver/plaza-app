@@ -35,9 +35,9 @@ export function setupControlView(mainWindow: BrowserWindow, url: string, preload
     view.webContents.loadURL(url)
 
     // open dev tools for the control ui
-    // view.webContents.openDevTools({
-    //     mode: 'undocked'
-    // });
+    view.webContents.openDevTools({
+        mode: 'undocked'
+    });
 
     updateBounds()
 
@@ -52,7 +52,7 @@ export function updateBounds() {
             x: 0,
             y: 0,
             width: bounds.width,
-            height: 48
+            height: TOP_BAR_HEIGHT
         })
     }
 
@@ -74,6 +74,11 @@ export const addTab = (tabId: string, label: string, url: string) => {
         })
 
         view.webContents.on('dom-ready', (event: Electron.Event) => {
+            tabs.find(t => t.tabId === tabId).label = view.webContents.getTitle()
+            sendTabs()
+        })
+
+        view.webContents.on('did-navigate', (event: Electron.Event)=> {
             tabs.find(t => t.tabId === tabId).label = view.webContents.getTitle()
             sendTabs()
         })
