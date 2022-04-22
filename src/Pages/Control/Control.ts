@@ -1,4 +1,5 @@
 import { BrowserWindow, BrowserView, ipcMain, IpcMainEvent, IpcMainInvokeEvent, ipcRenderer } from 'electron';
+import { CONTROLS_UI_PRELOAD } from '../../index';
 import { APP_MODE } from '../../models/AppState';
 import { Tab } from '../../models/Tab';
 import { setupTabView } from '../Home/MainView';
@@ -18,13 +19,13 @@ let mode: APP_MODE = APP_MODE.STANDARD
 export function getControlView(){
     return controlView
 }
-export function setupControlView(mainWindow: BrowserWindow, url: string, preload: string) {
+export function setupControlView(mainWindow: BrowserWindow, url: string) {
 
     main = mainWindow;
     const view = new BrowserView({
         webPreferences: {
-            preload: preload,
-            nodeIntegration: true,
+            preload: CONTROLS_UI_PRELOAD,
+            nodeIntegration: false,
         }
     })
 

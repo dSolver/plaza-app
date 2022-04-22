@@ -56,7 +56,7 @@
                 {
                   "html": "./src/ControlsUI/index.html",
                   "js": "./src/ControlsUI/renderer.tsx",
-                  "name": "main_window",
+                  "name": "controls_ui",
                   "preload": {
                     "js": "./src/preload.js"
                   }

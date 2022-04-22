@@ -2,7 +2,7 @@ const { contextBridge, ipcRenderer } = require('electron')
 
 console.log("Preload.js executed")
 
-contextBridge.exposeInMainWorld('electronAPI', {
+contextBridge.exposeInMainWorld('plazaAPI', {
     send: (channel, payload) => {
         ipcRenderer.invoke(channel, payload)
     },
